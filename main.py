@@ -41,6 +41,7 @@ def admin_only(f):
         return f(*args, **kwargs)
     return decorated_function
 
+## We will eventually build another python file with only databases
 ##CONNECT TO DB
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///blog.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
