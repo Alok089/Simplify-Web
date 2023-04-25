@@ -14,7 +14,6 @@ import random
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '8BYkEfBA6O6WlSihBXox7C0sKR6b'
-app.config['WTF_CSRF_TIME_LIMIT'] = None
 csrf = CSRFProtect(app)
 ckeditor = CKEditor(app)
 Bootstrap(app)
