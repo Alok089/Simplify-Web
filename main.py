@@ -13,6 +13,7 @@ from flask_gravatar import Gravatar
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '8BYkEfBA6O6donzWlSihBXox7C0sKR6b'
+app.config['WTF_CSRF_TIME_LIMIT'] = 'None'
 ckeditor = CKEditor(app)
 Bootstrap(app)
 app.app_context().push()
