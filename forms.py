@@ -17,7 +17,7 @@ class CommentForm(FlaskForm):
 
 class RegisterForm(FlaskForm):
     name = StringField(label='Name', validators=[DataRequired()])
-    email = StringField(label='Email', validators=[DataRequired()])
+    email = StringField(label='Email', validators=[DataRequired(), Email("Please enter a valid email")])
     password = PasswordField(label='Password',  validators=[DataRequired()])
     submit = SubmitField(label='Register')
 
