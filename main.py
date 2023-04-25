@@ -92,7 +92,7 @@ def get_all_posts():
 
 @app.route('/register', methods=['POST','GET'])
 def register():
-    register_user = RegisterForm(meta={'csrf_context': request.session})
+    register_user = RegisterForm(meta={'csrf_context': RegisterForm.request.session})
     if register_user.validate_on_submit():
         print("attempting validation")
         user = User.query.filter_by(email=register_user.email.data).first()
