@@ -1,1 +1,1 @@
-web: gunicorn main:app
+gunicorn server:app -k gevent --worker-connections 10
