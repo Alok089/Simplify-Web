@@ -10,10 +10,11 @@ from flask_login import UserMixin, login_user, LoginManager, login_required, cur
 from forms import CreatePostForm, RegisterForm, LoginForm, CommentForm
 from flask_gravatar import Gravatar
 from flask_wtf.csrf import CSRFProtect
-
+import random
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = '8BYkEfBA6O6WlSihBXox7C0sKR6b'
+key = random.randint(11111, 9999999999999)
+app.config['SECRET_KEY'] = key
 app.config['WTF_CSRF_TIME_LIMIT'] = None
 csrf = CSRFProtect(app)
 ckeditor = CKEditor(app)
