@@ -113,7 +113,7 @@ def register():
 
 @app.route('/login', methods=['POST', 'GET'])
 def login():
-    user_logged_in = LoginForm(meta={'csrf': False})
+    user_logged_in = LoginForm( meta={'csrf': False})
     if user_logged_in.validate_on_submit():
         user = User.query.filter_by(email=user_logged_in.email.data).first()
         # Email doesn't exist
