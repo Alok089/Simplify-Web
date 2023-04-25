@@ -92,7 +92,7 @@ def get_all_posts():
 
 @app.route('/register', methods=['POST','GET'])
 def register():
-    register_user = RegisterForm()
+    register_user = RegisterForm(meta={'csrf': False})
     if register_user.validate_on_submit():
         print("attempting validation")
         user = User.query.filter_by(email=register_user.email.data).first()
@@ -111,7 +111,7 @@ def register():
 
 @app.route('/login', methods=['POST', 'GET'])
 def login():
-    user_logged_in = LoginForm()
+    user_logged_in = LoginForm(meta={'csrf': False})
     if user_logged_in.validate_on_submit():
         user = User.query.filter_by(email=user_logged_in.email.data).first()
         # Email doesn't exist
