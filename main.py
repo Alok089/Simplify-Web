@@ -13,8 +13,7 @@ from flask_wtf.csrf import CSRFProtect
 import random
 
 app = Flask(__name__)
-key = random.randint(11111, 9999999999999)
-app.config['SECRET_KEY'] = key
+app.config['SECRET_KEY'] = '8BYkEfBA6O6WlSihBXox7C0sKR6b'
 app.config['WTF_CSRF_TIME_LIMIT'] = None
 csrf = CSRFProtect(app)
 ckeditor = CKEditor(app)
