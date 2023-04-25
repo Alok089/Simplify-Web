@@ -10,7 +10,6 @@ from flask_login import UserMixin, login_user, LoginManager, login_required, cur
 from forms import CreatePostForm, LoginForm, CommentForm, RegisterForm
 from flask_gravatar import Gravatar
 from flask.wrappers import Response
-import git
 # from flask_wtf.csrf import CSRFProtect
 # import random
 
@@ -215,14 +214,6 @@ def delete_post(post_id):
     db.session.commit()
     return redirect(url_for('get_all_posts'))
 
-# /git_update
-@app.route('/git_update', methods=['POST'])
-def git_update():
-    repo = git.Repo('./Simplify-Web')
-    origin = repo.remotes.origin
-    repo.create_head('main', origin.refs.main).set_tracking_branch(origin.refs.main).checkout()
-    origin.pull()
-    return '', 200
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000)
