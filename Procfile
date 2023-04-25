@@ -1,2 +1,2 @@
 web: gunicorn --workers 1 --threads 3 -b
-main:app
+0.0.0.0:5000 main:app
