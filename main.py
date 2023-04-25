@@ -1,3 +1,4 @@
+import os
 from functools import wraps
 from flask import Flask, render_template, redirect, url_for, flash, request, g, abort
 from flask_bootstrap import Bootstrap
@@ -46,7 +47,9 @@ def admin_only(f):
 
 ## We will eventually build another python file with only databases
 ##CONNECT TO DB
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///blog.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
+
+# 'sqlite:///blog.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
