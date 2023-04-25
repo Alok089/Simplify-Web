@@ -7,15 +7,8 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import relationship
 from flask_login import UserMixin, login_user, LoginManager, login_required, current_user, logout_user
-from forms import CreatePostForm, LoginForm, CommentForm
+from forms import CreatePostForm, LoginForm, CommentForm, RegisterForm
 from flask_gravatar import Gravatar
-from wtforms.csrf.session import SessionCSRF
-from datetime import timedelta
-from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, PasswordField
-from wtforms.validators import DataRequired, Length, URL, Email
-from flask_ckeditor import CKEditorField
-
 # from flask_wtf.csrf import CSRFProtect
 # import random
 
@@ -96,19 +89,10 @@ def get_all_posts():
     posts = BlogPost.query.all()
     return render_template("index.html", all_posts=posts)
 
-class RegisterForm(FlaskForm):
-    name = StringField(label='Name', validators=[DataRequired()])
-    email = StringField(label='Email', validators=[DataRequired(), Email("Please enter a valid email")])
-    password = PasswordField(label='Password',  validators=[DataRequired()])
-    submit = SubmitField(label='Register')
-    class Meta:
-        csrf = True
-        csrf_class = SessionCSRF
-        csrf_secret = b'EPj00jpfj8Gx1SfdgsdsdafjQfnQ9DJYe0Ym'
-        csrf_time_limit = timedelta(minutes=20)
+
 @app.route('/register', methods=['POST','GET'])
 def register():
-    register_user = RegisterForm(meta={'csrf_context': request.session})
+    register_user = RegisterForm()
     if register_user.validate_on_submit():
         print("attempting validation")
         user = User.query.filter_by(email=register_user.email.data).first()
