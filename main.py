@@ -9,11 +9,13 @@ from sqlalchemy.orm import relationship
 from flask_login import UserMixin, login_user, LoginManager, login_required, current_user, logout_user
 from forms import CreatePostForm, RegisterForm, LoginForm, CommentForm
 from flask_gravatar import Gravatar
+from flask_wtf.csrf import CSRFProtect
 
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = '8BYkEfBA6O6donzWlSihBXox7C0sKR6b'
-app.config['WTF_CSRF_TIME_LIMIT'] = 'None'
+app.config['SECRET_KEY'] = '8BYkEfBA6O6WlSihBXox7C0sKR6b'
+app.config['WTF_CSRF_TIME_LIMIT'] = None
+csrf = CSRFProtect(app)
 ckeditor = CKEditor(app)
 Bootstrap(app)
 app.app_context().push()
