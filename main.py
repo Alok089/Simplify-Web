@@ -49,10 +49,12 @@ def admin_only(f):
 ## We will eventually build another python file with only databases
 ##CONNECT TO DB
 host = "Amaira0218-3161.postgres.pythonanywhere-services.com"
-app.config["SQLALCHEMY_DATABASE_URI"] = 'postgresql+psycopg2://appuser:AmairaMehta@0218@Amaira0218-3161.postgres.pythonanywhere-services.com:13161/simplifywebdb'
-# 'sqlite:///blog.db'
-# os.environ.get('DATABASE_URL')
+username = "appuser"
+password = "AmairaMehta\@0218"
+port = "13161"
+database = "simplifywebdb"
 
+app.config["SQLALCHEMY_DATABASE_URI"] = f'postgresql+psycopg2://{username}:{password}@{host}:{port}/{database}'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
