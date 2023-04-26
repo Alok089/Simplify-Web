@@ -10,7 +10,6 @@ from sqlalchemy.orm import relationship
 from flask_login import UserMixin, login_user, LoginManager, login_required, current_user, logout_user
 from forms import CreatePostForm, LoginForm, CommentForm, RegisterForm
 from flask_gravatar import Gravatar
-import psycopg2
 # from flask_wtf.csrf import CSRFProtect
 # import random
 
@@ -26,7 +25,7 @@ password = "AmairaMehta0218"
 port = "13161"
 database = "simplifywebdb"
 
-app.config["SQLALCHEMY_DATABASE_URI"] = f'postgresql+psycopg2://{username}:{password}@{host}:{port}/{database}'
+app.config["SQLALCHEMY_DATABASE_URI"] = f'postgresql://{username}:{password}@{host}:{port}/{database}'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
