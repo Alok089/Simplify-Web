@@ -10,6 +10,7 @@ from sqlalchemy.orm import relationship
 from flask_login import UserMixin, login_user, LoginManager, login_required, current_user, logout_user
 from forms import CreatePostForm, LoginForm, CommentForm, RegisterForm
 from flask_gravatar import Gravatar
+import psycopg2
 # from flask_wtf.csrf import CSRFProtect
 # import random
 
