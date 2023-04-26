@@ -92,18 +92,6 @@ def admin_only(f):
         return f(*args, **kwargs)
     return decorated_function
 
-## We will eventually build another python file with only databases
-##CONNECT TO DB
-host = "Amaira0218-3161.postgres.pythonanywhere-services.com"
-username = "appuser"
-password = "AmairaMehta\@0218"
-port = "13161"
-database = "simplifywebdb"
-
-app.config["SQLALCHEMY_DATABASE_URI"] = f'postgresql+psycopg2://{username}:{password}@{host}:{port}/{database}'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-db = SQLAlchemy(app)
-
 @app.route('/')
 def get_all_posts():
     posts = BlogPost.query.all()
