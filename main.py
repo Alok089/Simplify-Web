@@ -11,7 +11,6 @@ from flask_login import UserMixin, login_user, LoginManager, login_required, cur
 from forms import CreatePostForm, LoginForm, CommentForm, RegisterForm
 from flask_gravatar import Gravatar
 import psycopg2
-from flask.wrappers import Response
 # from flask_wtf.csrf import CSRFProtect
 # import random
 
