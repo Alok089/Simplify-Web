@@ -29,8 +29,6 @@ database = "simplifywebdb"
 app.config["SQLALCHEMY_DATABASE_URI"] = f'postgresql://{username}:{password}@{host}:{port}/{database}'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
-# https://github.com/pallets/flask-sqlalchemy/issues/745#issuecomment-499970525
-db.engine.dispose()
 
 ##CONFIGURE TABLES
 class Comments(db.Model):
