@@ -21,8 +21,8 @@ app.config['SECRET_KEY'] = '8BYkEfBA6O6WlSihBXox7C0sKR6b'
 ## We will eventually build another python file with only databases
 ##CONNECT TO DB
 host = "Amaira0218-3161.postgres.pythonanywhere-services.com"
-username = "appuser"
-password = "AmairaMehta0218"
+username = "dbuser"
+password = "AmairaAnanya0218"
 port = "13161"
 database = "simplifywebdb"
 
