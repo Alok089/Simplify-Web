@@ -10,6 +10,7 @@ from sqlalchemy.orm import relationship
 from flask_login import UserMixin, login_user, LoginManager, login_required, current_user, logout_user
 from forms import CreatePostForm, LoginForm, CommentForm, RegisterForm
 from flask_gravatar import Gravatar
+import psycopg2
 from flask.wrappers import Response
 # from flask_wtf.csrf import CSRFProtect
 # import random
@@ -47,7 +48,9 @@ def admin_only(f):
 
 ## We will eventually build another python file with only databases
 ##CONNECT TO DB
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///blog.db'
+host = "Amaira0218-3161.postgres.pythonanywhere-services.com"
+app.config["SQLALCHEMY_DATABASE_URI"] = 'postgresql+psycopg2://appuser:AmairaMehta@0218@Amaira0218-3161.postgres.pythonanywhere-services.com:13161/simplifywebdb'
+# 'sqlite:///blog.db'
 # os.environ.get('DATABASE_URL')
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
