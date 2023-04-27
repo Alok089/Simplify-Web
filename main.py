@@ -55,6 +55,9 @@ def get_all_posts():
     posts = BlogPost.query.all()
     return render_template("index.html", all_posts=posts)
 
+@app.route('/privacy')
+def privacy():
+    return render_template("Privacy_Policy.html")
 
 @app.route('/register', methods=['POST','GET'])
 def register():
