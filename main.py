@@ -5,20 +5,17 @@ from flask_bootstrap import Bootstrap
 from flask_ckeditor import CKEditor
 from datetime import date
 from werkzeug.security import generate_password_hash, check_password_hash
-from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy.orm import relationship
-from flask_login import UserMixin, login_user, LoginManager, login_required, current_user, logout_user
+from flask_login import login_user, LoginManager, login_required, current_user, logout_user
 from forms import CreatePostForm, LoginForm, CommentForm, RegisterForm
 from flask_gravatar import Gravatar
+from database import Comments, BlogPost, User, db
 import psycopg2
 # from flask_wtf.csrf import CSRFProtect
 # import random
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '8BYkEfBA6O6WlSihBXox7C0sKR6b'
-# csrf = CSRFProtect(app)
 
-## We will eventually build another python file with only databases
 ##CONNECT TO DB
 host = "Amaira0218-3161.postgres.pythonanywhere-services.com"
 username = "dbuser"
@@ -28,45 +25,10 @@ database = "simplifywebdb"
 
 app.config["SQLALCHEMY_DATABASE_URI"] = f'postgresql://{username}:{password}@{host}:{port}/{database}'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-db = SQLAlchemy(app)
+db.init_app(app)
 
-##CONFIGURE TABLES
-class Comments(db.Model):
-    __tablename__ = "comments"
-    id = db.Column(db.Integer, primary_key=True)
-    post_id = db.Column(db.Integer, db.ForeignKey("blog_posts.id"))
-    comment = db.Column(db.Text, nullable=False)
-    commentor_id = db.Column(db.Integer, db.ForeignKey("users.id"))
-    blog = relationship("BlogPost", back_populates="comments")
-    commentor = relationship("User", back_populates="comments")
-
-class BlogPost(db.Model):
-    __tablename__ = "blog_posts"
-    id = db.Column(db.Integer, primary_key=True)
-    author_id = db.Column(db.Integer, db.ForeignKey("users.id"))
-    title = db.Column(db.String(250), unique=True, nullable=False)
-    subtitle = db.Column(db.String(250), nullable=False)
-    date = db.Column(db.String(250), nullable=False)
-    body = db.Column(db.Text, nullable=False)
-    img_url = db.Column(db.String(250), nullable=False)
-    author = relationship("User", back_populates="posts")
-    comments = relationship("Comments", back_populates="blog")
-
-class User(UserMixin, db.Model):
-    __tablename__ = "users"
-    id = db.Column(db.Integer, primary_key=True)
-    email = db.Column(db.String(100), unique=True)
-    password = db.Column(db.String(100))
-    name = db.Column(db.String(1000))
-    posts = relationship("BlogPost", back_populates="author")
-    comments = relationship("Comments", back_populates="commentor")
-
-db.create_all()
-
-# csrf = CSRFProtect(app)
 ckeditor = CKEditor(app)
 Bootstrap(app)
-app.app_context().push()
 login_manager = LoginManager()
 login_manager.init_app(app)
 gravatar = Gravatar(app,
