@@ -26,6 +26,8 @@ database = "simplifywebdb"
 app.config["SQLALCHEMY_DATABASE_URI"] = f'postgresql://{username}:{password}@{host}:{port}/{database}'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db.init_app(app)
+with app.app_context():
+    db.create_all()
 
 ckeditor = CKEditor(app)
 Bootstrap(app)

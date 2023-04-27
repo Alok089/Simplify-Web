@@ -2,7 +2,6 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import relationship
 from flask_login import UserMixin
 
-
 db = SQLAlchemy()
 
 ##CONFIGURE TABLES
@@ -35,5 +34,3 @@ class User(UserMixin, db.Model):
     name = db.Column(db.String(1000))
     posts = relationship("BlogPost", back_populates="author")
     comments = relationship("Comments", back_populates="commentor")
-
-db.create_all()
