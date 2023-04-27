@@ -17,6 +17,7 @@ app.config['SECRET_KEY'] = '8BYkEfBA6O6WlSihBXox7C0sKR6b'
 
 app.config["SQLALCHEMY_DATABASE_URI"] = 'sqlite:///simplify-web.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['WTF_CSRF_CHECK_DEFAULT'] = False
 db.init_app(app)
 with app.app_context():
     db.create_all()
@@ -57,7 +58,7 @@ def get_all_posts():
 
 @app.route('/register', methods=['POST','GET'])
 def register():
-    register_user = RegisterForm(meta={'csrf': False})
+    register_user = RegisterForm()
     if register_user.validate_on_submit():
         print("attempting validation")
         user = User.query.filter_by(email=register_user.email.data).first()
@@ -76,7 +77,7 @@ def register():
 
 @app.route('/login', methods=['POST', 'GET'])
 def login():
-    user_logged_in = LoginForm( meta={'csrf': False})
+    user_logged_in = LoginForm()
     if user_logged_in.validate_on_submit():
         user = User.query.filter_by(email=user_logged_in.email.data).first()
         # Email doesn't exist
