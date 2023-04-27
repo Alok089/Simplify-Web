@@ -60,6 +60,7 @@ def admin_only(f):
 @app.route('/')
 def get_all_posts():
     posts = BlogPost.query.all()
+    db.session.commit()
     return render_template("index.html", all_posts=posts)
 
 
