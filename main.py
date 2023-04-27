@@ -9,21 +9,13 @@ from flask_login import login_user, LoginManager, login_required, current_user, 
 from forms import CreatePostForm, LoginForm, CommentForm, RegisterForm
 from flask_gravatar import Gravatar
 from database import Comments, BlogPost, User, db
-import psycopg2
 # from flask_wtf.csrf import CSRFProtect
 # import random
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '8BYkEfBA6O6WlSihBXox7C0sKR6b'
 
-##CONNECT TO DB
-host = "Amaira0218-3161.postgres.pythonanywhere-services.com"
-username = "dbuser"
-password = "AmairaAnanya0218"
-port = "13161"
-database = "simplifywebdb"
-
-app.config["SQLALCHEMY_DATABASE_URI"] = f'postgresql://{username}:{password}@{host}:{port}/{database}'
+app.config["SQLALCHEMY_DATABASE_URI"] = 'sqlite:///simplify-web.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db.init_app(app)
 with app.app_context():
@@ -60,7 +52,6 @@ def admin_only(f):
 @app.route('/')
 def get_all_posts():
     posts = BlogPost.query.all()
-    db.session.commit()
     return render_template("index.html", all_posts=posts)
 
 
