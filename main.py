@@ -15,7 +15,6 @@ import psycopg2
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '8BYkEfBA6O6WlSihBXox7C0sKR6b'
-app.app_context().push()
 
 ##CONNECT TO DB
 host = "Amaira0218-3161.postgres.pythonanywhere-services.com"
@@ -30,6 +29,7 @@ db.init_app(app)
 
 ckeditor = CKEditor(app)
 Bootstrap(app)
+app.app_context().push()
 login_manager = LoginManager()
 login_manager.init_app(app)
 gravatar = Gravatar(app,
