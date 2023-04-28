@@ -183,7 +183,7 @@ def privacy():
     return render_template("Privacy_Policy.html")
 
 @app.route('/facebook')
-def privacy():
+def facebook():
     return render_template("facebooklogin.html")
 
 
