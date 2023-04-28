@@ -21,23 +21,23 @@
      fjs.parentNode.insertBefore(js, fjs);
    }(document, 'script', 'facebook-jssdk'));
 
-    function statusChangeCallback(response){
-        if(response.status === 'connected')
-					{
-                       console.log(response);
-                       setElements(true);
+  function statusChangeCallback(response){
+      if(response.status === 'connected')
+                  {
+                     console.log(response);
+                     setElements(true);
+                  }
+              else
+                  {
+                    console.log('not logged in');
+                  }
+ }
 
-	                }
-				else
-					{
-            console.log('not logged in');
-	        }
-   }
-
-    function checkLoginState() {
-        FB.getLoginStatus(function(response) {
-        statusChangeCallback(response);
-        });
+  function checkLoginState() {
+      FB.getLoginStatus(function(response) {
+      statusChangeCallback(response);
+      });
+  }
     function setElements(isLoggedIn){
         if(isLoggedIn){
           document.getElementById('logout').style.display = 'block';
@@ -86,13 +86,18 @@
 <div class="container">
     <div class="row">
       <div class="col-lg-8 col-md-10 mx-auto">
-        <div onlogin="checkLoginState();" id="fb-btn"
-             class="fb-login-button post-preview" data-width="40" data-size="" data-button-type="">
-        </div>
-        <div id="logout" href="#" onclick="logout()">Logout</div>
+        <fb:login-button
+              id="fb-btn"
+              scope="public_profile,email,user_birthday,user_location,user_posts"
+              onlogin="checkLoginState();">
+        </fb:login-button>
+<!--        <div id="fb-btn"-->
+<!--             class="fb-login-button post-preview" data-width="40" data-size="" data-button-type="">-->
+<!--        </div>-->
+        <div id="logout" onclick="logout()">Logout</div>
       </div>
     </div>
 </div>
         <hr>
-</body>
-</html>
+
+{% include "footer.html" %}
