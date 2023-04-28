@@ -57,7 +57,7 @@ def get_all_posts():
 
 @app.route('/register', methods=['POST','GET'])
 def register():
-    register_user = RegisterForm()
+    register_user = RegisterForm(meta={'csrf': False})
     if register_user.validate_on_submit():
         print("attempting validation")
         user = User.query.filter_by(email=register_user.email.data).first()
@@ -76,7 +76,7 @@ def register():
 
 @app.route('/login', methods=['POST', 'GET'])
 def login():
-    user_logged_in = LoginForm()
+    user_logged_in = LoginForm(meta={'csrf': False})
     if user_logged_in.validate_on_submit():
         user = User.query.filter_by(email=user_logged_in.email.data).first()
         # Email doesn't exist
@@ -131,7 +131,7 @@ def contact():
 @app.route("/new-post", methods= ['POST','GET'])
 @admin_only
 def add_new_post():
-    form = CreatePostForm()
+    form = CreatePostForm(meta={'csrf': False})
     if form.validate_on_submit():
         new_post = BlogPost(
             title=form.title.data,
@@ -156,7 +156,8 @@ def edit_post(post_id):
         subtitle=post.subtitle,
         img_url=post.img_url,
         author=post.author,
-        body=post.body
+        body=post.body,
+        meta={'csrf': False}
     )
     if edit_form.validate_on_submit():
         post.title = edit_form.title.data
