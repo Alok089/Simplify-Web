@@ -1,10 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-<title>Facebook Login JavaScript Example</title>
-<meta charset="UTF-8">
-</head>
-<body>
+{% include "header.html" %}
 <script>
   window.fbAsyncInit = function() {
     FB.init({
@@ -31,7 +25,6 @@
         if(response.status === 'connected')
 					{
             console.log(response);
-            document.getElementById("creds").value = response.accessToken;
 	        }
 				else
 					{
@@ -46,10 +39,40 @@ function checkLoginState() {
 }
 </script>
 
+  <!-- Page Header -->
+  <header class="masthead" style="background-image: url('https://images.unsplash.com/photo-1470092306007-055b6797ca72?ixlib=rb-1.2.1&auto=format&fit=crop&w=668&q=80')">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="site-heading">
+            <h1>Integrations</h1>
+            <span class="subheading">Lets see your social media presence</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
 
 <!-- The JS SDK Login Button -->
-<div class="fb-login-button" data-width="40" data-size="" data-button-type=""
-     data-layout="" data-auto-logout-link="true" data-use-continue-as="false" onlogin="checkLoginState();"></div>
-<label id="creds"></label>
+<!--<div class="fb-login-button" data-width="40" data-size="" data-button-type=""-->
+<!--     data-layout="" data-auto-logout-link="true" data-use-continue-as="false" onlogin=""></div>-->
+
+
+<div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <div class="post-preview" onlogin="checkLoginState();">
+            {% if current_user.is_authenticated %}
+                    <h2 class="post-title">
+                        Facebook Login
+                    </h2>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+</div>
+        <hr>
 </body>
 </html>
