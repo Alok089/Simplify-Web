@@ -55,10 +55,6 @@ def get_all_posts():
     posts = BlogPost.query.all()
     return render_template("index.html", all_posts=posts)
 
-@app.route('/privacy')
-def privacy():
-    return render_template("Privacy_Policy.html")
-
 @app.route('/register', methods=['POST','GET'])
 def register():
     register_user = RegisterForm()
@@ -181,6 +177,14 @@ def delete_post(post_id):
     db.session.delete(post_to_delete)
     db.session.commit()
     return redirect(url_for('get_all_posts'))
+
+@app.route('/privacy')
+def privacy():
+    return render_template("Privacy_Policy.html")
+
+@app.route('/facebook')
+def privacy():
+    return render_template("facebooklogin.html")
 
 
 if __name__ == "__main__":
