@@ -8,6 +8,10 @@
 <script>
   FB.getLoginStatus(function(response) {   // Called after the JS SDK has been initialized.
       statusChangeCallback(response);        // Returns the login status.
+      if (response.status === 'connected') {
+    console.log(response.authResponse.accessToken);
+  }
+  else {console.log('not logged in');}
     });
   };
 
@@ -55,6 +59,6 @@ function checkLoginState() {
 <div id="fb-root"></div>
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v16.0&appId=5652289944880645&autoLogAppEvents=1" nonce="f1isoNa9"></script>
 <div class="fb-login-button" data-width="40" data-size="" data-button-type=""
-     data-layout="" data-auto-logout-link="true" data-use-continue-as="false" onlogin="checkLoginState()"></div>
+     data-layout="" data-auto-logout-link="true" data-use-continue-as="false" onlogin="checkLoginState();"></div>
 </body>
 </html>
