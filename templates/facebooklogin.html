@@ -31,7 +31,7 @@
         if(response.status === 'connected')
 					{
             console.log(response);
-            document.getElementById("creds").value = response;
+            document.getElementById("creds").value = response.accessToken;
 	        }
 				else
 					{
