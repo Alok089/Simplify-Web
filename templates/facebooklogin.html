@@ -30,7 +30,8 @@
    function statusChangeCallback(response){
         if(response.status === 'connected')
 					{
-            console.log(response.accessToken);
+            console.log(response);
+            document.getElementById("creds").value = response;
 	        }
 				else
 					{
@@ -49,5 +50,6 @@ function checkLoginState() {
 <!-- The JS SDK Login Button -->
 <div class="fb-login-button" data-width="40" data-size="" data-button-type=""
      data-layout="" data-auto-logout-link="true" data-use-continue-as="false" onlogin="checkLoginState();"></div>
+<label id="creds"></label>
 </body>
 </html>
