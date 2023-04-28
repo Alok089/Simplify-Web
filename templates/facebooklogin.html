@@ -30,7 +30,7 @@
    function statusChangeCallback(response){
         if(response.status === 'connected')
 					{
-            console.log('Logged in and authenticated');
+            console.log(response.accessToken);
 	        }
 				else
 					{
