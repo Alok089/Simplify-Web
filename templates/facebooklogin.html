@@ -59,11 +59,13 @@ function checkLoginState() {
 <!--<div class="fb-login-button" data-width="40" data-size="" data-button-type=""-->
 <!--     data-layout="" data-auto-logout-link="true" data-use-continue-as="false" onlogin=""></div>-->
 
-
+<script async defer crossorigin="anonymous"
+        src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v16.0&appId=5652289944880645&autoLogAppEvents=1" nonce="daf7y2Jc"></script>
 <div class="container">
     <div class="row">
       <div class="col-lg-8 col-md-10 mx-auto">
-        <div class="post-preview" onlogin="checkLoginState();">
+        <div  onlogin="checkLoginState();"
+             class="fb-login-button" data-width="40" data-size="" data-button-type="">
                     <h2 class="post-title">
                         Facebook Login
                     </h2>
