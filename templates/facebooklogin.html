@@ -21,21 +21,43 @@
      fjs.parentNode.insertBefore(js, fjs);
    }(document, 'script', 'facebook-jssdk'));
 
-   function statusChangeCallback(response){
+    function statusChangeCallback(response){
         if(response.status === 'connected')
 					{
-            console.log(response);
-	        }
+                       console.log(response);
+                       setElements(true);
+
+	                }
 				else
 					{
             console.log('not logged in');
 	        }
    }
 
-function checkLoginState() {
-    FB.getLoginStatus(function(response) {
-    statusChangeCallback(response);
-    });
+    function checkLoginState() {
+        FB.getLoginStatus(function(response) {
+        statusChangeCallback(response);
+        });
+    function setElements(isLoggedIn){
+        if(isLoggedIn){
+          document.getElementById('logout').style.display = 'block';
+          document.getElementById('profile').style.display = 'block';
+          document.getElementById('feed').style.display = 'block';
+          document.getElementById('fb-btn').style.display = 'none';
+          document.getElementById('heading').style.display = 'none';
+        } else {
+          document.getElementById('logout').style.display = 'none';
+          document.getElementById('profile').style.display = 'none';
+          document.getElementById('feed').style.display = 'none';
+          document.getElementById('fb-btn').style.display = 'block';
+          document.getElementById('heading').style.display = 'block';
+        }
+
+        function logout(){
+        FB.logout(function(response){
+          setElements(false);
+        });
+      }
 }
 </script>
 
@@ -47,7 +69,7 @@ function checkLoginState() {
         <div class="col-lg-8 col-md-10 mx-auto">
           <div class="site-heading">
             <h1>Integrations</h1>
-            <span class="subheading">Lets see your social media presence</span>
+            <span id="heading" class="subheading">Log in to view your profile</span>
           </div>
         </div>
       </div>
@@ -64,9 +86,10 @@ function checkLoginState() {
 <div class="container">
     <div class="row">
       <div class="col-lg-8 col-md-10 mx-auto">
-        <div  onlogin="checkLoginState();"
-             class="fb-login-button" data-width="40" data-size="" data-button-type="">
+        <div onlogin="checkLoginState();" id="fb-btn"
+             class="fb-login-button post-preview" data-width="40" data-size="" data-button-type="">
         </div>
+        <div id="logout" href="#" onclick="logout()">Logout</div>
       </div>
     </div>
 </div>
