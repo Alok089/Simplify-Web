@@ -188,7 +188,7 @@ def privacy():
 def facebook():
     return render_template("facebooklogin.html")
 
-@app.route('/fb_auth',methods=['POST'])
+@app.route('/fb_auth')
 def pass_val():
     auth_token=request.args.get('value')
     print('name',auth_token)
