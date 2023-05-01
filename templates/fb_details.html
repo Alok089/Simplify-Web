@@ -31,7 +31,13 @@
                   {% endwith %}
       </div>
       <div class="col-lg-8 col-md-10 mx-auto content">
-        {{ token }}
+        {% for page in page_list['data'] %}
+          <div class="post-preview">
+            <h2 class="post-title">
+              {{ page.name }}
+            </h2>
+          </div>
+        {% endfor %}
       </div>
     </div>
   </div>

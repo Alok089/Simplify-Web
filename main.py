@@ -9,6 +9,7 @@ from flask_login import login_user, LoginManager, login_required, current_user, 
 from forms import CreatePostForm, LoginForm, CommentForm, RegisterForm
 from flask_gravatar import Gravatar
 from database import Comments, BlogPost, User, db
+from integrations import Facebook
 from flask import jsonify
 # from flask_wtf.csrf import CSRFProtect
 # import random
@@ -191,8 +192,9 @@ def facebook():
 @app.route('/fb_auth')
 def pass_val():
     auth_token=request.args.get('value')
-    print('name',auth_token)
-    return render_template("fb_details.html", token=auth_token)
+    fb = Facebook(auth_token)
+    page_list = fb.get_pages()
+    return render_template("fb_details.html", pages=page_list)
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000)
