@@ -190,9 +190,9 @@ def facebook():
 
 @app.route('/fb_auth',methods=['POST'])
 def pass_val():
-    name=request.args.get('value')
-    print('name',name)
-    return jsonify({'reply':'success'})
+    auth_token=request.args.get('value')
+    print('name',auth_token)
+    return render_template("fb_details", token=auth_token)
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000)
