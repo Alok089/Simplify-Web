@@ -26,19 +26,7 @@
                   {
                       console.log(response);
                       console.log(response.authResponse.accessToken);
-                      $.ajax(
-                      {type:'POST',
-                          contentType:'application/json;charset-utf-08',
-                          dataType:'json',
-                          url:"{{ url_for('pass_val', value=response.authResponse.accessToken) }}",
-                          success: function (data) {
-                          var reply=data.reply;
-                          if (reply=="success")
-                          {return}
-                          else
-                          {alert("some error ocured in the session agent")}
-                          }
-                      });
+                      buildProfile(response);
                   }
               else
                   {
@@ -51,6 +39,12 @@
       statusChangeCallback(response);
       });
   }
+
+  function buildProfile(user){
+          let profile = `
+            <p>${user.authResponse.accessToken}</p>`;
+          document.getElementById('profile').innerHTML = profile;
+      }
 
   function logout(){
         FB.logout(function(response){
@@ -94,6 +88,11 @@
 <!--        </div>-->
         <div><a id="logout" href="#" onclick="logout()">Logout</a></div>
       </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div id="profile"></div>
+        </div>
     </div>
 </div>
         <hr>
