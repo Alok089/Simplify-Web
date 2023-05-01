@@ -42,7 +42,7 @@
 
   function buildProfile(user){
           let profile = `
-            <h3> <a href='/fb_auth?value='+${user.authResponse.accessToken}>View Analytics </h3>`;
+            <h3> <a href='/fb_auth?value=${user.authResponse.accessToken}'>View Analytics </h3>`;
           document.getElementById('profile').innerHTML = profile;
       }
 
