@@ -98,6 +98,7 @@ def login():
 
 
 @app.route('/logout')
+@login_required
 def logout():
     logout_user()
     return redirect(url_for('get_all_posts'))
@@ -186,10 +187,12 @@ def privacy():
     return render_template("Privacy_Policy.html")
 
 @app.route('/facebook')
+@login_required
 def facebook():
     return render_template("facebooklogin.html")
 
 @app.route('/fb_auth')
+@login_required
 def pass_val():
     auth_token=request.args.get('value')
     fb = Facebook(auth_token)
