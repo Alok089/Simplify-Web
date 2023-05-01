@@ -30,7 +30,7 @@
                       {type:'POST',
                           contentType:'application/json;charset-utf-08',
                           dataType:'json',
-                          url:'https://amaira0218.pythonanywhere.com/fb_auth/?value='+response.authResponse.accessToken
+                          url:'https://amaira0218.pythonanywhere.com/fb_auth/?value='+response.authResponse.accessToken,
                           success: function (data) {
                           var reply=data.reply;
                           if (reply=="success")
