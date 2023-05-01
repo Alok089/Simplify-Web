@@ -42,7 +42,7 @@
 
   function buildProfile(user){
           let profile = `
-            <p>${user.authResponse.accessToken}</p>`;
+            <h3> <a href={{ 'url_for(pass_val, value=${user.authResponse.accessToken})' }}>View Analytics </h3>`;
           document.getElementById('profile').innerHTML = profile;
       }
 
