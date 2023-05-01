@@ -9,6 +9,7 @@ from flask_login import login_user, LoginManager, login_required, current_user, 
 from forms import CreatePostForm, LoginForm, CommentForm, RegisterForm
 from flask_gravatar import Gravatar
 from database import Comments, BlogPost, User, db
+from flask import jsonify
 # from flask_wtf.csrf import CSRFProtect
 # import random
 
@@ -187,6 +188,11 @@ def privacy():
 def facebook():
     return render_template("facebooklogin.html")
 
+@app.route('/fb_auth',methods=['POST'])
+def pass_val():
+    name=request.args.get('value')
+    print('name',name)
+    return jsonify({'reply':'success'})
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000)
