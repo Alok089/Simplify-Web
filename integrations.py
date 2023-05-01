@@ -1,24 +1,25 @@
 import facebook
 import requests
-user_access_token = "EABQUuk5VBgUBALCon6ifROLirpaZCE60iBMJgOm2wj3Vup5vIcDXS" \
-                    "uUVQoYFBctQ4Cpt7MGXWFRg40QKQo6ZCpbQj7jgUagABTqhVhKq4is9p" \
-                    "fohjxmOckkM8FbAGlnwX9QKFmnMZBZCZBnE3X7mljMM7cVuRECqnbxZC" \
-                    "vToU5AGzOoOBdB6KBZBVx5kYxrby4meZBYIjZCu3DAZDZD"
+user_access_token = "EABQUuk5VBgUBAIioYL4OfOIbFLo4EaRUPTe0SrJZ" \
+                    "CPhLVNtso1gzJ4nsr8FEUd02UnW04vicKgFLf2PBmUDZBj6V" \
+                    "IcTCenKLMjhAkPGBizmv8gCyGhC3fW15cSavqYPEBdtwtWTUrZAm" \
+                    "YZAYmh2qzG0ntdhzGxanfHbMadKp9XqYPRHrjRI6ZCQVhVesYnd9" \
+                    "LNu10wip4ZAwZDZD"
 
-graph = facebook.GraphAPI(access_token="your_token", version="2.12")
+graph = facebook.GraphAPI(access_token=user_access_token, version="2.12")
 app_id = "5652289944880645"
 canvas_url = "http://amaira0218.pythonanywhere.com/"
 # perms = ["manage_pages","publish_pages"]
-fb_login_url = graph.get_auth_url(app_id, canvas_url)
-response = requests.post(fb_login_url)
-# TODO 1: Get userid and user access token:
+fb_page_api = graph.get_object("me/accounts")
 
+# TODO 1: Get userid and user access token:
+fb_page_list = {}
+for page in fb_page_api['data']:
+    fb_page_list[page['name']] = page['access_token']
+
+print(fb_page_list)
 # TODO 2: Get Page list for associated account:
 userid = "110550945301774"
-user_access_token = "EABQUuk5VBgUBALCon6ifROLirpaZCE60iBMJgOm2wj3Vup5vIcDXS" \
-                    "uUVQoYFBctQ4Cpt7MGXWFRg40QKQo6ZCpbQj7jgUagABTqhVhKq4is9p" \
-                    "fohjxmOckkM8FbAGlnwX9QKFmnMZBZCZBnE3X7mljMM7cVuRECqnbxZC" \
-                    "vToU5AGzOoOBdB6KBZBVx5kYxrby4meZBYIjZCu3DAZDZD"
 
 fb_page_access_token = "EABQUuk5VBgUBAJI5kMhK4mawCJIgReWOT" \
                        "iQRbw0RrkVlfghFKluyoIsL97XLJRViycuxWG" \
