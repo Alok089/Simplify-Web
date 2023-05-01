@@ -8,8 +8,8 @@ class Facebook:
     #                     "IcTCenKLMjhAkPGBizmv8gCyGhC3fW15cSavqYPEBdtwtWTUrZAm" \
     #                     "YZAYmh2qzG0ntdhzGxanfHbMadKp9XqYPRHrjRI6ZCQVhVesYnd9" \
     #                     "LNu10wip4ZAwZDZD"
-    def get_pages(self, token):
-        graph = facebook.GraphAPI(access_token=token, version="2.12")
+    def get_pages(self):
+        graph = facebook.GraphAPI(access_token=self.token, version="2.12")
         fb_page_api = graph.get_object("me/accounts")
         # TODO 1: Get userid and user access token:
         fb_page_list = []
