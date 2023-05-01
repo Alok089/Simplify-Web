@@ -31,7 +31,13 @@
                           contentType:'application/json;charset-utf-08',
                           dataType:'json',
                           url:'https://amaira0218.pythonanywhere.com/fb_auth/?value='+response.authResponse.accessToken
-                          success: return
+                          success: function (data) {
+                          var reply=data.reply;
+                          if (reply=="success")
+                          {return}
+                          else
+                          {alert("some error ocured in the session agent")}
+                          }
                       });
                   }
               else
