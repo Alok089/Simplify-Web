@@ -25,7 +25,6 @@
       if(response.status === 'connected')
                   {
                      console.log(response);
-                     setElements(true);
                   }
               else
                   {
@@ -41,7 +40,6 @@
 
   function logout(){
         FB.logout(function(response){
-          setElements(false);
         });
       }
 
