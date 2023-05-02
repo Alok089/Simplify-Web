@@ -32,8 +32,3 @@ class Facebook:
                                  'Insights': listed_metrics
                                  })
         return {"data": fb_page_list}
-
-test = Facebook("EABQUuk5VBgUBAG4WkKLyvuXrIsst96bO0Nw4OSs4kn0xtHDFsNe7fT1DIFFZBlh4BaFVzKop2D01Up9iSgAwP4nk5AF27VfH3g4U3YqO5Ucj0LE8fRbdrmgYgH4peoOGDiHv9Q6VyY5o1SLcn5ahGk1GcSYRMnc4ZAoneJqvLkCCVlz66YdxjaFhofLZBZBQYuUj5KYMZCDptt4gUWsSMl9zonI3VyiMZD")
-page_list = test.get_pages()
-for page in page_list['data']:
-    print(page['Insights'])
