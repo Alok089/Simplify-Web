@@ -27,10 +27,12 @@
                       console.log(response);
                       console.log(response.authResponse.accessToken);
                       buildProfile(response);
+                      document.getElementById('logout').style.display = 'block';
                   }
               else
                   {
                     console.log('not logged in');
+                    document.getElementById('logout').style.display = 'none';
                   }
  }
 
