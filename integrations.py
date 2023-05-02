@@ -14,5 +14,11 @@ class Facebook:
         # TODO 1: Get userid and user access token:
         fb_page_list = []
         for page in fb_page_api['data']:
-            fb_page_list.append({'Name': page['name'],'AccessToken': page['access_token']})
+            insights = graph.get_object(f"{page['access_token']}/insights/page_impressions_unique")
+            fb_page_list.append({'Name': page['name'],
+                                 'AccessToken': page['access_token'],
+                                 'Insights': insights})
         return {"data": fb_page_list}
+
+test = Facebook("EABQUuk5VBgUBAK00JRQjkl9rkmTs09TjmzYrd9N1PIfeDs3dB4gLIZBQnKCs93OWpMKV042vooFTYAWsqUrko7cMc049uiggDCQBowlAf0JYaBpaqeMN7ulznAENQj4HoNMTaITZCQKRdLgoL5ylEizPszTC2j90OSeFPzx36eKa0FGIdAUWFMqFdbyMCFZB7ZAxAeZA1M8KmS3xLQcoZC97vZCnrrEFM4ZD")
+page_list = test.get_pages()
