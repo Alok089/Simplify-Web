@@ -90,24 +90,25 @@
         src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v16.0&appId=5652289944880645&autoLogAppEvents=1" nonce="daf7y2Jc"></script>
 <div class="container">
     <div class="row">
-      <div class="col-lg-12 col-md-10 mx-auto">
+      <div id="fb-btn" class="col-lg-12 col-md-10 mx-auto">
         <fb:login-button
-              id="fb-btn"
               onlogin="checkLoginState();">
         </fb:login-button>
-<!--        <div id="fb-btn"-->
-<!--             class="fb-login-button post-preview" data-width="40" data-size="" data-button-type="">-->
-<!--        </div>-->
+          <hr>
+    </div>
     </div>
     <div class="row">
         <div class="col-lg-12 col-md-12 mx-auto" id="profile">
+        <hr>
         </div>
     </div>
     <div class="row">
-              <a class="col-lg-12 col-md-12 mx-auto" id="logout" href="#" onclick="fbLogoutUser()">Logout</a>
+        <div id="logout" class="col-lg-12 col-md-12 mx-auto">
+            <a href="#" onclick="fbLogoutUser()">Logout</a>
+            <hr>
+        </div>
       </div>
-    </div>
+    <hr>
 </div>
-        <hr>
 
 {% include "footer.html" %}
