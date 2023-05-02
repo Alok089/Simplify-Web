@@ -41,6 +41,9 @@
                 {% for dict in metric['Insights'] %}
                   {% for key, value in dict.items() %}
                     {{ key }} - {{ value }}
+                  {% endfor %}
+                {% endfor %}
+              {% endfor %}
             </h3>
           </div>
         {% endfor %}
