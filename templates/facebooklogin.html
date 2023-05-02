@@ -89,26 +89,25 @@
 <script async defer crossorigin="anonymous"
         src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v16.0&appId=5652289944880645&autoLogAppEvents=1" nonce="daf7y2Jc"></script>
 <div class="container">
-    <div class="row">
-      <div id="fb-btn" class="col-lg-12 col-md-10 mx-auto">
+    <div class="row" id="fb-btn">
+        <div class="col-lg-12 col-md-10 mx-auto">
         <fb:login-button
               onlogin="checkLoginState();">
         </fb:login-button>
-          <hr>
     </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-12 col-md-12 mx-auto" id="profile">
         <hr>
-        </div>
     </div>
-    <div class="row">
-        <div id="logout" class="col-lg-12 col-md-12 mx-auto">
-            <a href="#" onclick="fbLogoutUser()">Logout</a>
-            <hr>
+    <div class="row" id="profile">
+        <div class="col-lg-12 col-md-12 mx-auto">
         </div>
-      </div>
-    <hr>
+        <hr>
+    </div>
+    <div class="row" id="logout">
+        <div class="col-lg-12 col-md-12 mx-auto">
+            <a href="#" onclick="fbLogoutUser()">Logout</a>
+        </div>
+        <hr>
+    </div>
 </div>
 
 {% include "footer.html" %}
