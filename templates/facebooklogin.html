@@ -44,7 +44,7 @@
 
   function buildProfile(user){
           let profile = `
-            <h3> <a href='/fb_auth?value=${user.authResponse.accessToken}'>View Analytics </h3>`;
+            <h3> <a href='/fb_auth?value=${user.authResponse.accessToken}'>View Analytics</h3>`;
           document.getElementById('profile').innerHTML = profile;
           document.getElementById('fb-btn').style.display = 'none';
       }
@@ -98,13 +98,15 @@
 <!--        <div id="fb-btn"-->
 <!--             class="fb-login-button post-preview" data-width="40" data-size="" data-button-type="">-->
 <!--        </div>-->
-        <div><a id="logout" href="#" onclick="fbLogoutUser()">Logout</a></div>
-      </div>
     </div>
     <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
           <div id="profile"></div>
         </div>
+    </div>
+    <div class="row">
+          <div><a id="logout" href="#" onclick="fbLogoutUser()">Logout</a></div>
+      </div>
     </div>
 </div>
         <hr>
