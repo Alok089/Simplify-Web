@@ -32,11 +32,11 @@
             <h2 class="post-title">
               {{ page.Name }}
             </h2>
-            <p class="post-subtitle">
+            <p class="post-meta">
               # of Impressions per day - {{ page.Insights['Unique Page Impressions Per Day'] }}
-              # of Impressions per week - {{ page.Insights['Unique Page Impressions Per Week'] }}
-              # of Impressions every 28 days - {{ page.Insights['Unique Page Impressions Every 28 Days'] }}
             </p>
+            <p class="post-meta"># of Impressions per week - {{ page.Insights['Unique Page Impressions Per Week'] }}</p>
+            <p class="post-meta"># of Impressions every 28 days - {{ page.Insights['Unique Page Impressions Every 28 Days'] }}</p>
             <hr>
           </div>
         {% endfor %}
