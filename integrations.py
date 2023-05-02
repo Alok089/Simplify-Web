@@ -16,7 +16,7 @@ class Facebook:
         for page in fb_page_api['data']:
             page_graph = facebook.GraphAPI(access_token=page['access_token'], version="2.12")
             insights = page_graph.get_object(f"{page['id']}/insights/page_impressions_unique")
-            listed_metrics = []
+            listed_metrics = {}
             for metric in insights['data']:
                 if f'{metric["name"]}_{metric["period"]}' == 'page_impressions_unique_day':
                     metric_title = "Unique Page Impressions Per Day"
@@ -26,16 +26,14 @@ class Facebook:
                     metric_title = "Unique Page Impressions Every 28 Days"
                 else:
                     metric_title = "New Metric"
-                listed_metrics.append({metric_title: metric["values"][1]['value']})
+                listed_metrics[metric_title] = metric["values"][1]['value']
             fb_page_list.append({'Name': page['name'],
                                  'AccessToken': page['access_token'],
                                  'Insights': listed_metrics
                                  })
         return {"data": fb_page_list}
 
-test = Facebook("EABQUuk5VBgUBAD5PNQcSohRrwqoNZCrrLSdMhAO5lzaV9DxbAYPZCc1oyRaaaWqdLR3jKGhMrBZCQyk0SSA4rrVMQPZCQ12bc0sr6C1IZB5EcTcAVRPI4PKNZB4UiUyy7inLIYKIugZBZCWnlVVZA28nVLcd3uvrL0IxnBaeMoXixUZBmXvFKmAWVm2XZAIBAnZBXS3jEzmZAjMe4j83HDOxYSLQZCLmGLDjQf4r8ZD")
+test = Facebook("EABQUuk5VBgUBAG4WkKLyvuXrIsst96bO0Nw4OSs4kn0xtHDFsNe7fT1DIFFZBlh4BaFVzKop2D01Up9iSgAwP4nk5AF27VfH3g4U3YqO5Ucj0LE8fRbdrmgYgH4peoOGDiHv9Q6VyY5o1SLcn5ahGk1GcSYRMnc4ZAoneJqvLkCCVlz66YdxjaFhofLZBZBQYuUj5KYMZCDptt4gUWsSMl9zonI3VyiMZD")
 page_list = test.get_pages()
-for metric in page_list['data']:
-    for dict in metric['Insights']:
-        for key, value in dict.items():
-            print(f'{key} - {value}')
+for page in page_list['data']:
+    print(page['Insights']['Unique Page Impressions Per Day'])
