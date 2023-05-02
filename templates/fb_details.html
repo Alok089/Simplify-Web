@@ -36,6 +36,12 @@
             <h2 class="post-title">
               {{ page.Name }}
             </h2>
+            <h3 class="post-subtitle">
+              {% for metric in page['Insights'] %}
+                {% for dict in metric['Insights'] %}
+                  {% for key, value in dict.items() %}
+                    {{ key }} - {{ value }}
+            </h3>
           </div>
         {% endfor %}
       </div>
