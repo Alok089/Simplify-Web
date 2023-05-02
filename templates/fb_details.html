@@ -1,7 +1,3 @@
-{% extends 'bootstrap/base.html' %}
-{% import "bootstrap/wtf.html" as wtf %}
-
-{% block content %}
 {% include "header.html" %}
 
   <!-- Page Header -->
@@ -36,9 +32,11 @@
             <h2 class="post-title">
               {{ page.Name }}
             </h2>
-            <h3 class="post-subtitle">
-              {{ page.Insights['Unique Page Impressions Per Day'] }}
-            </h3>
+            <p class="post-subtitle">
+              # of Impressions per day - {{ page.Insights['Unique Page Impressions Per Day'] }}
+              # of Impressions per week - {{ page.Insights['Unique Page Impressions Per Week'] }}
+              # of Impressions every 28 days - {{ page.Insights['Unique Page Impressions Every 28 Days'] }}
+            </p>
           </div>
         {% endfor %}
       </div>
@@ -47,4 +45,3 @@
 
 
 {% include "footer.html" %}
-{% endblock %}
