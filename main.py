@@ -183,7 +183,6 @@ def delete_post(post_id):
     return redirect(url_for('get_all_posts'))
 
 @app.route('/privacy')
-@login_required
 def privacy():
     return render_template("Privacy_Policy.html")
 
