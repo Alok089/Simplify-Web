@@ -33,5 +33,5 @@ class Facebook:
                                  })
         return {"data": fb_page_list}
 
-fb = Facebook("EABQUuk5VBgUBAJyinMC2neY1aQGDIhbBEbTWzpKars2gIvT8GVLpZBOwTkSZB9AcQPt3MBneCUe6ZCRZCe7N7Qc3ZB9TLJKGGXnKu7XkrpKUOWzbvoGwofoBdx3UIcK86qEiJE6uWRPIjiET1AlmYDBesPAZAD52oJ9UmBA4ujTBd2SsZB7YMkxpcOaBmbyZAUkAJ4g2QGw7AK2H3OcNAMF04AgyELIN7o0ZD")
-print(fb.get_pages())
+# fb = Facebook("EABQUuk5VBgUBAJyinMC2neY1aQGDIhbBEbTWzpKars2gIvT8GVLpZBOwTkSZB9AcQPt3MBneCUe6ZCRZCe7N7Qc3ZB9TLJKGGXnKu7XkrpKUOWzbvoGwofoBdx3UIcK86qEiJE6uWRPIjiET1AlmYDBesPAZAD52oJ9UmBA4ujTBd2SsZB7YMkxpcOaBmbyZAUkAJ4g2QGw7AK2H3OcNAMF04AgyELIN7o0ZD")
+# print(fb.get_pages())
