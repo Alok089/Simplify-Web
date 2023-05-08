@@ -14,7 +14,7 @@ class Facebook:
         # TODO 1: Get userid and user access token:
         fb_page_list = []
         for page in fb_page_api['data']:
-            page_graph = facebook.GraphAPI(access_token=page['access_token'], version="2.12")
+            page_graph = facebook.GraphAPI(access_token=page['accessToken'], version="2.12")
             insights = page_graph.get_object(f"{page['id']}/insights/page_impressions")
             listed_metrics = {}
             for metric in insights['data']:
