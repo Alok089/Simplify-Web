@@ -14,7 +14,8 @@ class Facebook:
         # TODO 1: Get userid and user access token:
         fb_page_list = []
         for page in fb_page_api['data']:
-            page_graph = facebook.GraphAPI(access_token=page['accessToken'], version="2.12")
+            page_token = page['access_token']
+            page_graph = facebook.GraphAPI(access_token=page_token, version="2.12")
             insights = page_graph.get_object(f"{page['id']}/insights/page_impressions")
             listed_metrics = {}
             for metric in insights['data']:
@@ -33,5 +34,5 @@ class Facebook:
                                  })
         return {"data": fb_page_list}
 
-# fb = Facebook("EABQUuk5VBgUBAJyinMC2neY1aQGDIhbBEbTWzpKars2gIvT8GVLpZBOwTkSZB9AcQPt3MBneCUe6ZCRZCe7N7Qc3ZB9TLJKGGXnKu7XkrpKUOWzbvoGwofoBdx3UIcK86qEiJE6uWRPIjiET1AlmYDBesPAZAD52oJ9UmBA4ujTBd2SsZB7YMkxpcOaBmbyZAUkAJ4g2QGw7AK2H3OcNAMF04AgyELIN7o0ZD")
-# print(fb.get_pages())
+fb = Facebook("EABQUuk5VBgUBAAFKuSvaipDlsN4xZARuI69bPrLwZANa2Pye08XnZCZBHCdORvJAzPNcMApVESoU1UAmwWmy2Iom92kWaTuatUwxaqJMHXgkUrh7ArDPFLz09LoMiZBj26pJZCllSxnfJ1Xd6nZBlj7P75JislkK5bh8IlTWnXqbyV1402DGFOjlPJ6mBCxeZAB3NIrCmVXjGvulLUwyouWhrfLOJfcEosMZD")
+print(fb.get_pages())
