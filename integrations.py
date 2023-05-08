@@ -34,5 +34,3 @@ class Facebook:
                                  })
         return {"data": fb_page_list}
 
-fb = Facebook("EABQUuk5VBgUBAAFKuSvaipDlsN4xZARuI69bPrLwZANa2Pye08XnZCZBHCdORvJAzPNcMApVESoU1UAmwWmy2Iom92kWaTuatUwxaqJMHXgkUrh7ArDPFLz09LoMiZBj26pJZCllSxnfJ1Xd6nZBlj7P75JislkK5bh8IlTWnXqbyV1402DGFOjlPJ6mBCxeZAB3NIrCmVXjGvulLUwyouWhrfLOJfcEosMZD")
-print(fb.get_pages())
