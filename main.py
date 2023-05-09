@@ -206,7 +206,7 @@ def pass_val():
                                             'Page Impressions Every 28 Days': 0}}]}
     return render_template("fb_details.html", pages=page_list)
 
-@app.route('/<char:page_name>')
+@app.route('/<string:page_name>')
 @login_required
 def fb_posts(page_name):
     fb = Facebook(fb_auth)
