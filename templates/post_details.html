@@ -30,12 +30,14 @@
         {% for post in post_details['data'] %}
           <div class="post-preview">
             <h2 class="post-title">
-              {{ page.Name }}
+              {{ post.message }}
             </h2>
             <p class="post-meta">
-              # of Impressions Yesterday - {{ page.Insights['Page Impressions Yesterday'] }} <br>
-              # of Impressions Last week - {{ page.Insights['Page Impressions Last Week'] }} <br>
-              # of Impressions Last 28 days - {{ page.Insights['Page Impressions Last 28 Days'] }}</p>
+              Impressions - {{ post.Impressions }} <br>
+              Views - {{ post.Views }} <br>
+              Engaged Users - {{ post['Engaged Users'] }} <br>
+              Likes - {{ post.Likes }} <br>
+            </p>
             <hr>
           </div>
         {% endfor %}

@@ -208,10 +208,10 @@ def pass_val():
 
 @app.route('/<char:page_name>')
 @login_required
-def pass_val(page_name):
+def fb_posts(page_name):
     fb = Facebook(fb_auth)
     post_details = fb.get_posts(page_name, 10)
-    return render_template("fb_details.html", posts=post_details)
+    return render_template("post_details.html", posts=post_details)
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000)

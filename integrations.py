@@ -98,3 +98,8 @@ class Facebook:
         get_post_info(next_page_posts)
         paginate(next_page_posts)
         return {'name': page_name, 'data': self.all_posts}
+
+
+fb = Facebook("EABQUuk5VBgUBABKMMCrnSbgpG5J87JDQqJZAGxw0YZBEI7y34Fv0Y89xvfiA5DRJtaHyDRV1M5L9fWv9CFpBdbZATkAPNjAK53VaU5nIQBZACNyOhWsd4d8XDaVC2GWf4swEFRstPxk2la38d4rX26annfBJCgwH6ABfkXHUuCO3ZBDSvYBPf7UYOEbxhfL6REKIkkhHguwZDZD")
+post_details = fb.get_posts("Action Reeplayy", 10)
+print(post_details)
