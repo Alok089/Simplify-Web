@@ -16,7 +16,7 @@ from flask import jsonify
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '8BYkEfBA6O6WlSihBXox7C0sKR6b'
-
+fb_auth=""
 app.config["SQLALCHEMY_DATABASE_URI"] = 'sqlite:///simplify-web.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['WTF_CSRF_CHECK_DEFAULT'] = False
