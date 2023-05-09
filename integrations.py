@@ -46,7 +46,6 @@ class Facebook:
                 page_id = page['id']
         graph = facebook.GraphAPI(access_token=access_token, version="2.12")
         fb_post_api = graph.get_object(f"/{page_id}/published_posts")
-
         # TODO 2: Define logic to get post metrics:
         def get_post_info(next_page_posts):
             def video_view_review(period):
@@ -63,22 +62,30 @@ class Facebook:
                     reaction_value = 0
                 return reaction_value
 
+            def message_review(post):
+                if 'message' in post:
+                    title = post['message'].split('\n')[0]
+                else:
+                    title = "<No Post Title>"
+                return title
+
             for post in next_page_posts['data']:
                 post_impressions = graph.get_object(f"/{post['id']}/insights/post_impressions")
                 post_engaged_users = graph.get_object(f"/{post['id']}/insights/post_engaged_users")
                 post_video_views = graph.get_object(f"/{post['id']}/insights/post_video_views")
                 post_reactions = graph.get_object(f"/{post['id']}/insights/post_reactions_by_type_total")
-                self.all_posts.append({'message': post['message'], 'id': post['id'],
-                                  'Impressions': post_impressions['data'][0]['values'][0]['value'],
-                                  'Engaged Users': post_engaged_users['data'][0]['values'][0]['value'],
-                                  'Views': video_view_review('lifetime'),
-                                  'Likes': reaction_review('like'),
-                                  'Laughs': reaction_review('haha'),
-                                  'Hearts': reaction_review('love'),
-                                  'Wows': reaction_review('wow'),
-                                  'Sorry': reaction_review('sorry'),
-                                  'Anger': reaction_review('anger')
-                                  })
+                self.all_posts.append({'message': message_review(post),
+                                       'id': post['id'],
+                                       'Impressions': post_impressions['data'][0]['values'][0]['value'],
+                                       'Engaged Users': post_engaged_users['data'][0]['values'][0]['value'],
+                                       'Views': video_view_review('lifetime'),
+                                       'Likes': reaction_review('like'),
+                                       'Laughs': reaction_review('haha'),
+                                       'Hearts': reaction_review('love'),
+                                       'Wows': reaction_review('wow'),
+                                       'Sorry': reaction_review('sorry'),
+                                       'Anger': reaction_review('anger')
+                                       })
         # TODO 3: Read posts across pages
         def paginate(next_page_posts):
             reached_last_page = False
@@ -94,12 +101,16 @@ class Facebook:
         until = time.mktime(until_dt.timetuple())
         since_dt = until_dt - timedelta(lookback)
         since = time.mktime(since_dt.timetuple())
-        next_page_posts = requests.get(f"{fb_post_api['paging']['next']}&since={since}&until={until}").json()
-        get_post_info(next_page_posts)
-        paginate(next_page_posts)
+        if 'next' in fb_post_api['paging']:
+            next_page_posts = requests.get(f"{fb_post_api['paging']['next']}&since={since}&until={until}").json()
+            get_post_info(next_page_posts)
+            paginate(next_page_posts)
+        else:
+            single_page_posts = fb_post_api
+            get_post_info(single_page_posts)
         return {'name': page_name, 'data': self.all_posts}
 
 
 # fb = Facebook("EABQUuk5VBgUBABKMMCrnSbgpG5J87JDQqJZAGxw0YZBEI7y34Fv0Y89xvfiA5DRJtaHyDRV1M5L9fWv9CFpBdbZATkAPNjAK53VaU5nIQBZACNyOhWsd4d8XDaVC2GWf4swEFRstPxk2la38d4rX26annfBJCgwH6ABfkXHUuCO3ZBDSvYBPf7UYOEbxhfL6REKIkkhHguwZDZD")
-# post_details = fb.get_posts("Action Reeplayy", 10)
+# post_details = fb.get_posts("Gopuram School of Performing Arts - USA", 900)
 # print(post_details)
