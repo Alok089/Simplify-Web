@@ -16,7 +16,6 @@ from flask import jsonify
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '8BYkEfBA6O6WlSihBXox7C0sKR6b'
-fb_auth=""
 app.config["SQLALCHEMY_DATABASE_URI"] = 'sqlite:///simplify-web.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['WTF_CSRF_CHECK_DEFAULT'] = False
@@ -64,7 +63,7 @@ def register():
         print("attempting validation")
         user = User.query.filter_by(email=register_user.email.data).first()
         if user:
-            flash("Look like you have already registered with us, please login using your past credentials")
+            flash("Looks like you have already registered with us, please login using your past credentials")
             return redirect(url_for('login'))
         record = User(email=register_user.email.data,
                        password= generate_password_hash(register_user.password.data, method='pbkdf2:sha256', salt_length=8),
@@ -194,22 +193,21 @@ def facebook():
 @app.route('/fb_auth')
 @login_required
 def pass_val():
-    global fb_auth
     auth_token=request.args.get('value')
     fb = Facebook(auth_token)
-    fb_auth = auth_token
     page_list = fb.get_pages()
     if len(page_list) == 0:
         page_list = {'data': [{'Name': "Please select a page",
                                'Insights': {'Page Impressions Per Day': 0,
                                             'Page Impressions Per Week': 0,
                                             'Page Impressions Every 28 Days': 0}}]}
-    return render_template("fb_details.html", pages=page_list)
+    return render_template("fb_details.html", pages=page_list, token=auth_token)
 
 @app.route('/<string:page_name>')
 @login_required
 def fb_posts(page_name):
-    fb = Facebook(fb_auth)
+    auth_token = request.args.get('value')
+    fb = Facebook(auth_token)
     post_details = fb.get_posts(page_name, 10)
     return render_template("post_details.html", posts=post_details)
 
