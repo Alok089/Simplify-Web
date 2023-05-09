@@ -194,8 +194,10 @@ def facebook():
 @app.route('/fb_auth')
 @login_required
 def pass_val():
+    global fb_auth
     auth_token=request.args.get('value')
     fb = Facebook(auth_token)
+    fb_auth = auth_token
     page_list = fb.get_pages()
     if len(page_list) == 0:
         page_list = {'data': [{'Name': "Please select a page",
@@ -204,9 +206,12 @@ def pass_val():
                                             'Page Impressions Every 28 Days': 0}}]}
     return render_template("fb_details.html", pages=page_list)
 
-# fb = Facebook("EABQUuk5VBgUBABKMMCrnSbgpG5J87JDQqJZAGxw0YZBEI7y34Fv0Y89xvfiA5DRJtaHyDRV1M5L9fWv9CFpBdbZATkAPNjAK53VaU5nIQBZACNyOhWsd4d8XDaVC2GWf4swEFRstPxk2la38d4rX26annfBJCgwH6ABfkXHUuCO3ZBDSvYBPf7UYOEbxhfL6REKIkkhHguwZDZD")
-# page_details = fb.get_posts("Action Reeplayy",30)
-# print(page_details)
+@app.route('/<char:page_name>')
+@login_required
+def pass_val(page_name):
+    fb = Facebook(fb_auth)
+    post_details = fb.get_posts(page_name, 10)
+    return render_template("fb_details.html", posts=post_details)
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000)

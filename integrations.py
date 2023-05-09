@@ -97,4 +97,4 @@ class Facebook:
         next_page_posts = requests.get(f"{fb_post_api['paging']['next']}&since={since}&until={until}").json()
         get_post_info(next_page_posts)
         paginate(next_page_posts)
-        return self.all_posts
+        return {'name': page_name, 'data': self.all_posts}
