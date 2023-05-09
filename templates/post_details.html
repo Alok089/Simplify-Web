@@ -7,7 +7,7 @@
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
           <div class="page-heading">
-            <h1>{{ post_details['name'] }}</h1>
+            <h1>{{ posts['name'] }}</h1>
             <span class="subheading">A snapshot of your Facebook Page</span>
           </div>
         </div>
@@ -27,7 +27,7 @@
                   {% endwith %}
       </div>
       <div class="col-lg-8 col-md-10 mx-auto content">
-        {% for post in post_details['data'] %}
+        {% for post in posts['data'] %}
           <div class="post-preview">
             <h2 class="post-title">
               {{ post.message }}
