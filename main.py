@@ -197,7 +197,16 @@ def pass_val():
     auth_token=request.args.get('value')
     fb = Facebook(auth_token)
     page_list = fb.get_pages()
+    if len(page_list) == 0:
+        page_list = {'data': [{'Name': "Please select a page",
+                               'Insights': {'Page Impressions Per Day': 0,
+                                            'Page Impressions Per Week': 0,
+                                            'Page Impressions Every 28 Days': 0}}]}
     return render_template("fb_details.html", pages=page_list)
+
+# fb = Facebook("EABQUuk5VBgUBABKMMCrnSbgpG5J87JDQqJZAGxw0YZBEI7y34Fv0Y89xvfiA5DRJtaHyDRV1M5L9fWv9CFpBdbZATkAPNjAK53VaU5nIQBZACNyOhWsd4d8XDaVC2GWf4swEFRstPxk2la38d4rX26annfBJCgwH6ABfkXHUuCO3ZBDSvYBPf7UYOEbxhfL6REKIkkhHguwZDZD")
+# page_details = fb.get_posts("Action Reeplayy",30)
+# print(page_details)
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000)
