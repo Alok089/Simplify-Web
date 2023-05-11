@@ -214,15 +214,15 @@ def fb_posts(page_name):
     page_videos = Thread(target=fb.get_videos(page_name))
     page_reels = Thread(target=fb.get_reels(page_name))
 
-    page_posts.start()
+    # page_posts.start()
     page_videos.start()
     page_reels.start()
 
-    page_posts.join()
+    # page_posts.join()
     page_videos.join()
     page_reels.join()
 
-    return render_template("post_details.html", page_name = page_name, posts=fb.all_posts, videos=fb.all_videos, reels=fb.all_reels)
+    return render_template("post_details.html", page_name = page_name, videos=fb.all_videos, reels=fb.all_reels)
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000)
