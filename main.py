@@ -10,6 +10,7 @@ from forms import CreatePostForm, LoginForm, CommentForm, RegisterForm
 from flask_gravatar import Gravatar
 from database import Comments, BlogPost, User, db
 from integrations import Facebook
+from threading import Thread
 from flask import jsonify
 # from flask_wtf.csrf import CSRFProtect
 # import random
@@ -208,8 +209,20 @@ def pass_val():
 def fb_posts(page_name):
     auth_token = request.args.get('value')
     fb = Facebook(auth_token)
-    post_details = fb.get_posts(page_name, 10)
-    return render_template("post_details.html", posts=post_details)
+
+    page_posts = Thread(target=fb.get_posts(page_name))
+    page_videos = Thread(target=fb.get_videos(page_name))
+    page_reels = Thread(target=fb.get_reels(page_name))
+
+    page_posts.start()
+    page_videos.start()
+    page_reels.start()
+
+    page_posts.join()
+    page_videos.join()
+    page_reels.join()
+
+    return render_template("post_details.html", page_name = page_name, posts=fb.all_posts, videos=fb.all_videos, reels=fb.all_reels)
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000)

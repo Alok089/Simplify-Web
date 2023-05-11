@@ -7,7 +7,7 @@
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
           <div class="page-heading">
-            <h1>{{ posts['name'] }}</h1>
+            <h1>{{ page_name }}</h1>
             <span class="subheading">A snapshot of your Facebook Page</span>
           </div>
         </div>
@@ -26,17 +26,22 @@
                     {% endif %}
                   {% endwith %}
       </div>
+
+      <div class="page-heading">
+            <h2>Posts</h2>
+          </div>
+
       <div class="col-lg-8 col-md-10 mx-auto content">
-        {% for post in posts['data'] %}
+        {% for post in posts %}
           <div class="post-preview">
-            <h2 class="post-title">
-              {{ post.message }}
-            </h2>
+            <h3 class="post-title">
+              {{ post.Title }}
+            </h3>
             <p class="post-meta">
-              Impressions - {{ post.Impressions }} <br>
+              Unique Impressions - {{ post['Unique Impressions'] }} <br>
               Views - {{ post.Views }} <br>
-              Engaged Users - {{ post['Engaged Users'] }} <br>
               Likes - {{ post.Likes }} <br>
+              Hearts - {{ post.Hearts }} <br>
             </p>
             <hr>
           </div>
