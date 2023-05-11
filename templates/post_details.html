@@ -26,7 +26,8 @@
                     {% endif %}
                   {% endwith %}
       </div>
-
+    </div>
+    <div class="row">
       <div class="page-heading">
             <h2>Posts</h2>
           </div>
@@ -38,10 +39,59 @@
               {{ post.Title }}
             </h3>
             <p class="post-meta">
+              Date - {{ video.Date }} <br>
               Unique Impressions - {{ post['Unique Impressions'] }} <br>
               Views - {{ post.Views }} <br>
               Likes - {{ post.Likes }} <br>
               Hearts - {{ post.Hearts }} <br>
+            </p>
+            <hr>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="row">
+      <div class="page-heading">
+            <h2>Page Videos</h2>
+            <span class="subheading">Includes Cross Posted Videos</span>
+          </div>
+
+      <div class="col-lg-8 col-md-10 mx-auto content">
+        {% for video in videos %}
+          <div class="post-preview">
+            <h3 class="post-title">
+              {{ video.Title }}
+            </h3>
+            <p class="post-meta">
+              Date - {{ video.Date }} <br>
+              Unique Impressions - {{ video['Unique Impressions'] }} <br>
+              Views - {{ video.Views }} <br>
+              Likes - {{ video.Likes }} <br>
+              Hearts - {{ video.Hearts }} <br>
+            </p>
+            <hr>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="row">
+      <div class="page-heading">
+            <h2>Page Reels</h2>
+            <span class="subheading">Includes Cross Posted Reels From Instagram</span>
+          </div>
+
+      <div class="col-lg-8 col-md-10 mx-auto content">
+        {% for reel in reels %}
+          <div class="post-preview">
+            <h3 class="post-title">
+              {{ reel.Title }}
+            </h3>
+            <p class="post-meta">
+              Date - {{ reel.Date }} <br>
+              Unique Impressions - {{ reel['Unique Impressions'] }} <br>
+              Views - {{ reel.Views }} <br>
+              Likes - {{ reel.Likes }} <br>
+              Hearts - {{ reel.Hearts }} <br>
             </p>
             <hr>
           </div>
