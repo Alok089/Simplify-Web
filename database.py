@@ -36,8 +36,9 @@ class User(UserMixin, db.Model):
     comments = relationship("Comments", back_populates="commentor")
 
 class Attribute(db.Model):
-    __tablename__ = "attribute"
+    __tablename__ = "attributes"
     attribute_id = db.Column(db.Integer, primary_key=True)
     attribute = db.Column(db.String(100))
     value = db.Column(db.String(1000))
+    item_id = db.Column(db.String(100))
     item_analyzed_on = db.Column(db.Date)

@@ -223,16 +223,19 @@ def fb_posts(page_name):
     page_videos.join()
     page_reels.join()
     saved_posts = Attribute.query.all()
-    for post in fb.all_posts:
-        if post['id'] not in saved_posts:
-            for key in post.keys():
-                record = Attribute(attribute=key,
-                                   value=post[key],
-                                   item_analyzed_on=datetime.date.today()
-                                   )
-                db.session.add(record)
-                db.session.commit()
-
+    def store_data(item_list):
+        for item in fb.item_list:
+            if item['id'] not in saved_posts:
+                for key in item.keys():
+                    record = Attribute(attribute=key,
+                                       value=item[key],
+                                       item_id=item['id'],
+                                       item_analyzed_on=datetime.date.today()
+                                       )
+                    db.session.add(record)
+                    db.session.commit()
+    store_data(fb.all_videos)
+    store_data(fb.all_reels)
     return render_template("post_details.html", page_name = page_name, videos=fb.all_videos, reels=fb.all_reels)
 
 if __name__ == "__main__":
