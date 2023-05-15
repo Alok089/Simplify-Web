@@ -1,3 +1,4 @@
+import datetime
 import os
 from functools import wraps
 from flask import Flask, render_template, redirect, url_for, flash, request, g, abort
@@ -8,7 +9,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import login_user, LoginManager, login_required, current_user, logout_user
 from forms import CreatePostForm, LoginForm, CommentForm, RegisterForm
 from flask_gravatar import Gravatar
-from database import Comments, BlogPost, User, db
+from database import Comments, BlogPost, User, db, Sentiment
 from integrations import Facebook
 from threading import Thread
 from flask import jsonify
@@ -221,6 +222,18 @@ def fb_posts(page_name):
     # page_posts.join()
     page_videos.join()
     page_reels.join()
+    saved_posts = Sentiment.query.all()
+    for post in fb.all_posts:
+        if post['id'] not in saved_posts:
+            for key in post.keys():
+                record = Sentiment(platform="Facebook",
+                                   item_analyzed_on=datetime.date.today(),
+                                   item="Post",
+                                   attribute=key,
+                                   value=post[key]
+                                   )
+                db.session.add(record)
+                db.session.commit()
 
     return render_template("post_details.html", page_name = page_name, videos=fb.all_videos, reels=fb.all_reels)
 

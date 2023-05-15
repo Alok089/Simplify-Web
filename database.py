@@ -34,3 +34,13 @@ class User(UserMixin, db.Model):
     name = db.Column(db.String(1000))
     posts = relationship("BlogPost", back_populates="author")
     comments = relationship("Comments", back_populates="commentor")
+
+class Sentiment(db.Model):
+    __tablename__ = "sentiment"
+    platform = db.Column(db.String(100), unique=True)
+    item_created_on = db.Column(db.Date)
+    item_analyzed_on = db.Column(db.Date)
+    item = db.Column(db.String(100))
+    id = db.Column(db.String(100), primary_key=True)
+    attribute = db.Column(db.String(100))
+    value = db.Column(db.String(1000))

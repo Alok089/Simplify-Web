@@ -68,10 +68,12 @@ class Facebook:
                 if 'message' in post:
                     title = post['message'].split('\n')[0]
                     date = post['created_time'].split('T')[0]
+                    id = post['id']
                 else:
                     title = "<No Post Title>"
                     date = post['created_time'].split('T')[0]
-                return {'title': title , 'date': date}
+                    id = post['id']
+                return {'title': title , 'date': date, "id": id}
 
             video_insights = {}
             def add_insights(post, metric, tag):
@@ -84,7 +86,8 @@ class Facebook:
                 view_thread = Thread(target = add_insights(post,'post_video_views','Views'))
                 reaction_thread = Thread(target= add_insights(post,'post_reactions_by_type_total','Reactions'))
                 video_summary = {'Title': message_review(post)['title'],
-                                 'Date': message_review(post)['date']}
+                                 'Date': message_review(post)['date'],
+                                 'id': message_review(post)['id']}
                 impression_tread.start()
                 view_thread.start()
                 reaction_thread.start()
