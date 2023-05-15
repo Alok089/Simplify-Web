@@ -226,12 +226,9 @@ def fb_posts(page_name):
     for post in fb.all_posts:
         if post['id'] not in saved_posts:
             for key in post.keys():
-                record = Sentiment(platform="Facebook",
-                                   item_analyzed_on=datetime.date.today(),
-                                   item="Post",
-                                   id = post['id'],
-                                   attribute=key,
-                                   value=post[key]
+                record = Sentiment(attribute=key,
+                                   value=post[key],
+                                   item_analyzed_on=datetime.date.today()
                                    )
                 db.session.add(record)
                 db.session.commit()

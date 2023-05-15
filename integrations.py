@@ -85,9 +85,12 @@ class Facebook:
                 impression_tread = Thread(target = add_insights(post,'post_impressions_unique', 'Unique Impressions'))
                 view_thread = Thread(target = add_insights(post,'post_video_views','Views'))
                 reaction_thread = Thread(target= add_insights(post,'post_reactions_by_type_total','Reactions'))
-                video_summary = {'Title': message_review(post)['title'],
-                                 'Date': message_review(post)['date'],
-                                 'id': message_review(post)['id']}
+                video_summary = {'Platform': 'Facebook',
+                                 'Item': 'Post',
+                                 'id': message_review(post)['id'],
+                                 'Title': message_review(post)['title'],
+                                 'Date': message_review(post)['date']}
+
                 impression_tread.start()
                 view_thread.start()
                 reaction_thread.start()
@@ -137,6 +140,9 @@ class Facebook:
                 view_thread = Thread(target=add_insights(video,'total_video_views','Views'))
                 reaction_thread = Thread(target=add_insights(video,'total_video_reactions_by_type_total','Reactions'))
                 video_summary = {
+                            'Platform': 'Facebook',
+                            'Item': 'Video',
+                            'id': video['id'],
                             'Title': video['description'],
                             'Date': video['updated_time'].split('T')[0]
                 }
@@ -189,6 +195,9 @@ class Facebook:
                     return counts
 
                 reel_summary = {
+                    'Platform': 'Facebook',
+                    'Item': 'Reel',
+                    'id': reel['id'],
                     'Title': reel['description'],
                     'Date': reel['updated_time'].split('T')[0]
                 }
