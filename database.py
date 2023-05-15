@@ -36,7 +36,7 @@ class User(UserMixin, db.Model):
     comments = relationship("Comments", back_populates="commentor")
 
 class Attribute(db.Model):
-    __tablename__ = "sentiment"
+    __tablename__ = "attribute"
     attribute_id = db.Column(db.Integer, primary_key=True)
     attribute = db.Column(db.String(100))
     value = db.Column(db.String(1000))
