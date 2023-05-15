@@ -38,7 +38,6 @@ class User(UserMixin, db.Model):
 class Sentiment(db.Model):
     __tablename__ = "sentiment"
     platform = db.Column(db.String(100), unique=True)
-    item_created_on = db.Column(db.Date)
     item_analyzed_on = db.Column(db.Date)
     item = db.Column(db.String(100))
     id = db.Column(db.String(100), primary_key=True)

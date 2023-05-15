@@ -229,6 +229,7 @@ def fb_posts(page_name):
                 record = Sentiment(platform="Facebook",
                                    item_analyzed_on=datetime.date.today(),
                                    item="Post",
+                                   id = post['id'],
                                    attribute=key,
                                    value=post[key]
                                    )
