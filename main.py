@@ -224,7 +224,7 @@ def fb_posts(page_name):
     page_reels.join()
     saved_posts = Attribute.query.all()
     def store_data(item_list):
-        for item in fb.item_list:
+        for item in item_list:
             if item['id'] not in saved_posts:
                 for key in item.keys():
                     record = Attribute(attribute=key,
