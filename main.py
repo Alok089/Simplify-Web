@@ -9,7 +9,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import login_user, LoginManager, login_required, current_user, logout_user
 from forms import CreatePostForm, LoginForm, CommentForm, RegisterForm
 from flask_gravatar import Gravatar
-from database import Comments, BlogPost, User, db, Sentiment
+from database import Comments, BlogPost, User, db, Attribute
 from integrations import Facebook
 from threading import Thread
 from flask import jsonify
@@ -222,11 +222,11 @@ def fb_posts(page_name):
     # page_posts.join()
     page_videos.join()
     page_reels.join()
-    saved_posts = Sentiment.query.all()
+    saved_posts = Attribute.query.all()
     for post in fb.all_posts:
         if post['id'] not in saved_posts:
             for key in post.keys():
-                record = Sentiment(attribute=key,
+                record = Attribute(attribute=key,
                                    value=post[key],
                                    item_analyzed_on=datetime.date.today()
                                    )
