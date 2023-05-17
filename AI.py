@@ -87,6 +87,8 @@ def store_inference_as_attribute(cat_val,inference_attribute,matching_attribute)
                             if str.lower(key) == str.lower(cat_val) and \
                                     str.lower(attribute[key]) == str.lower(inference[cat_val]):
                                 record_exists = True
+                            else:
+                                record_exists = False
                     if record_exists == False:
                         add_inference = Attribute(
                             attribute=cat_val,
@@ -94,8 +96,8 @@ def store_inference_as_attribute(cat_val,inference_attribute,matching_attribute)
                             item_id=item_id,
                             item_analyzed_on=datetime.date.today()
                         )
-                        db.session.commit()
                         db.session.add(add_inference)
+                        db.session.commit()
 
 def teach_model(category,cat_value,inferring_attribute,value,target_attribute):
     store_inference_as_attribute(cat_value, inferring_attribute, target_attribute)
