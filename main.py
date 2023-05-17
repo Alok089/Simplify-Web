@@ -12,6 +12,7 @@ from flask_gravatar import Gravatar
 from database import Comments, BlogPost, User, db, Attribute
 from integrations import Facebook
 from threading import Thread
+import AI
 from flask import jsonify
 # from flask_wtf.csrf import CSRFProtect
 # import random
@@ -236,7 +237,9 @@ def fb_posts(page_name):
                     db.session.commit()
     store_data(fb.all_videos)
     store_data(fb.all_reels)
-    return render_template("post_details.html", page_name = page_name, videos=fb.all_videos, reels=fb.all_reels)
+    AI.teach_model('Entertainment', 'Celebrities', 'name','Anil Kapoor','Title')
+    all_videos = AI.build_default_view()
+    return render_template("post_details.html", page_name = page_name, videos=all_videos, reels=fb.all_reels)
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000)

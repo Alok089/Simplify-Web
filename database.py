@@ -42,3 +42,22 @@ class Attribute(db.Model):
     value = db.Column(db.String(1000))
     item_id = db.Column(db.String(100))
     item_analyzed_on = db.Column(db.Date)
+
+class Inference_Attributes(db.Model):
+    __tablename__ = "inference_attributes"
+    attribute_id = db.Column(db.Integer, primary_key=True)
+    attribute = db.Column(db.String(100))
+    value = db.Column(db.String(1000))
+    item_id = db.Column(db.String(100))
+
+class Inference_Categroies(db.Model):
+    __tablename__ = "inference_categories"
+    category_id = db.Column(db.Integer, primary_key=True)
+    category = db.Column(db.String(100))
+    value = db.Column(db.String(1000))
+
+class Inference_Association(db.Model):
+    __tablename__ = "inference_association"
+    association_id = db.Column(db.Integer, primary_key=True)
+    category_id = db.Column(db.Integer)
+    item_id = db.Column(db.Integer)
