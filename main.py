@@ -243,7 +243,7 @@ def fb_posts(page_name):
     # store_data(fb.all_reels)
     AI.teach_model('Entertainment', 'Celebrities', 'name','Pran','Title')
     all_videos = AI.build_default_view()
-    return render_template("post_details.html", page_name = page_name, videos=all_videos, reels=fb.all_reels)
+    return render_template("post_details.html", page_name = page_name, videos=all_videos)
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000)
