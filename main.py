@@ -241,7 +241,7 @@ def fb_posts(page_name):
                         db.session.commit()
     # store_data(fb.all_videos)
     # store_data(fb.all_reels)
-    AI.teach_model('Entertainment', 'Celebrities', 'name','Pran','Title')
+    # AI.teach_model('Entertainment', 'Celebrities', 'name','Pran','Title')
     all_videos = AI.build_default_view()
     return render_template("post_details.html", page_name = page_name, videos=all_videos)
 
