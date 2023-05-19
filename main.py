@@ -210,19 +210,19 @@ def pass_val():
 @login_required
 def fb_posts(page_name):
     auth_token = request.args.get('value')
-    fb = Facebook(auth_token)
+    # fb = Facebook(auth_token)
 
-    page_posts = Thread(target=fb.get_posts(page_name))
-    page_videos = Thread(target=fb.get_videos(page_name))
-    page_reels = Thread(target=fb.get_reels(page_name))
+    # page_posts = Thread(target=fb.get_posts(page_name))
+    # page_videos = Thread(target=fb.get_videos(page_name))
+    # page_reels = Thread(target=fb.get_reels(page_name))
 
     # page_posts.start()
-    page_videos.start()
-    page_reels.start()
+    # page_videos.start()
+    # page_reels.start()
 
     # page_posts.join()
-    page_videos.join()
-    page_reels.join()
+    # page_videos.join()
+    # page_reels.join()
 
     def store_data(item_list):
         saved_posts = []
@@ -239,8 +239,8 @@ def fb_posts(page_name):
                                            )
                         db.session.add(record)
                         db.session.commit()
-    store_data(fb.all_videos)
-    store_data(fb.all_reels)
+    # store_data(fb.all_videos)
+    # store_data(fb.all_reels)
     AI.teach_model('Entertainment', 'Celebrities', 'name','Pran','Title')
     all_videos = AI.build_default_view()
     return render_template("post_details.html", page_name = page_name, videos=all_videos, reels=fb.all_reels)
